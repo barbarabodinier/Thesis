@@ -36,41 +36,42 @@ omega <- SimulatePrecision(
   theta = theta,
   pd_strategy = "min_eigenvalue"
 )
-omega_tilde=omega$omega
+omega_tilde <- omega$omega
 
 # Storing contrast for different values of u
 u_list <- 10^-(seq(-1, 5, by = 0.1))
-contrasts=rep(NA, length(u_list))
-mycor=NULL
-diag(omega_tilde)=0
-for (k in 1:length(u_list)){
-  u=u_list[k]
-  
+contrasts <- rep(NA, length(u_list))
+mycor <- NULL
+diag(omega_tilde) <- 0
+for (k in 1:length(u_list)) {
+  u <- u_list[k]
+
   # Making positive definite with given u
   set.seed(1)
-  omega=MakePositiveDefinite(omega=omega_tilde,     
-                       pd_strategy = "min_eigenvalue", 
-                       u_list = u, 
-                       ev_xx = NULL)
-  
+  omega <- MakePositiveDefinite(
+    omega = omega_tilde,
+    pd_strategy = "min_eigenvalue",
+    u_list = u,
+    ev_xx = NULL
+  )
+
   # Calculating correlation matrix
-  mycor=abind(mycor, cov2cor(solve(omega$omega)), along=3)
-  
+  mycor <- abind(mycor, cov2cor(solve(omega$omega)), along = 3)
+
   # Calculating contrast
-  contrasts[k]=Contrast(cov2cor(solve(omega$omega)))
+  contrasts[k] <- Contrast(cov2cor(solve(omega$omega)))
 }
 
-plotname="Working_figures/Correlations_contrast.pdf"
-pdf(plotname, width = 12, height = 8
-)
+plotname <- "Working_figures/Correlations_contrast.pdf"
+pdf(plotname, width = 12, height = 8)
 layout(mat = matrix(c(1, 1, 1, 2, 3, 4), ncol = 3, byrow = TRUE), heights = c(1.25, 1))
 par(mar = c(5, 5, 1, 5))
 
 # Contrast as a function of u
 par(xpd = FALSE)
 plot(log(u_list), contrasts,
-     pch = 19, col = "navy", cex = 0.5,
-     xlab = "log(u)", ylab = "Contrast", cex.lab = 1.5, las = 1, bty = "n"
+  pch = 19, col = "navy", cex = 0.5,
+  xlab = "log(u)", ylab = "Contrast", cex.lab = 1.5, las = 1, bty = "n"
 )
 abline(v = range(log(u_list)), lty = 2, col = "black")
 abline(v = axTicks(1), lty = 3, col = "grey")
@@ -82,16 +83,16 @@ abline(h = max(contrasts), lty = 2, col = "red")
 
 # Corresponding correlation matrices
 Heatmap(mycor[, , dim(mycor)[3]],
-        col = c("navy", "white", "darkred"),
-        legend_range = c(-1, 1), legend = FALSE, axes = FALSE
+  col = c("navy", "white", "darkred"),
+  legend_range = c(-1, 1), legend = FALSE, axes = FALSE
 )
 Heatmap(mycor[, , which.max(contrasts)],
-        col = c("navy", "white", "darkred"),
-        legend_range = c(-1, 1), legend = FALSE, axes = FALSE
+  col = c("navy", "white", "darkred"),
+  legend_range = c(-1, 1), legend = FALSE, axes = FALSE
 )
 Heatmap(mycor[, , 1],
-        col = c("navy", "white", "darkred"),
-        legend_range = c(-1, 1), legend_length = 10, legend = TRUE, axes = FALSE
+  col = c("navy", "white", "darkred"),
+  legend_range = c(-1, 1), legend_length = 10, legend = TRUE, axes = FALSE
 )
 dev.off()
 system(paste("pdfcrop --margin 10", plotname, plotname))

@@ -94,20 +94,22 @@ x <- x[, 1:10]
 Heatmap(as.matrix(dist(x)))
 
 pdf(paste0("Working_figures/Scatter_plot_clusters.pdf"),
-    width = 7, height = 7
+  width = 7, height = 7
 )
-par(mar=c(5,5,1,1))
-mycolours=c("royalblue","tomato","tan")
-plot(x[,c(1,2)],
-     col=mycolours[simul$theta],
-     pch=19,
-     xlab="First attribute",
-     ylab="Second attribute",
-     cex.lab=1.5, las=1)
+par(mar = c(5, 5, 1, 1))
+mycolours <- c("royalblue", "tomato", "tan")
+plot(x[, c(1, 2)],
+  col = mycolours[simul$theta],
+  pch = 19,
+  xlab = "First attribute",
+  ylab = "Second attribute",
+  cex.lab = 1.5, las = 1
+)
 legend("bottomright",
-       pch=19, col=mycolours, bty="n",
-       cex=1.5, pt.cex=1,
-       legend=paste("Cluster", 1:length(n)))
+  pch = 19, col = mycolours, bty = "n",
+  cex = 1.5, pt.cex = 1,
+  legend = paste("Cluster", 1:length(n))
+)
 dev.off()
 
 # Sparse clustering using sparcl

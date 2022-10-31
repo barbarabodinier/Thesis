@@ -18,17 +18,18 @@ mypch <- c(rep(17, length(pi_list)), rep(17, length(pi_list)), 18, 18, 18, 18)
 dimensionality <- c("Low", "Intermediate", "High")
 
 # Saving figure
-{ pdf(paste0("Working_figures/Boxplot_regression_", simul_study_id, "_PFER_thr_", PFER_thr, ".pdf"),
-      width = 12, height = 4.5
-)
+{
+  pdf(paste0("Working_figures/Boxplot_regression_", simul_study_id, "_PFER_thr_", PFER_thr, ".pdf"),
+    width = 12, height = 4.5
+  )
   par(mar = c(7, 5, 3, 1), mfrow = c(1, 3))
-  metric_list=c("Precision","Recall","F1_score")
+  metric_list <- c("Precision", "Recall", "F1_score")
   for (metric in metric_list) {
-    myylab=metric
+    myylab <- metric
     if (myylab == "F1_score") {
       myylab <- eval(parse(text = "expression(F[1]*'-score')"))
     } else {
-      metric=tolower(metric) 
+      metric <- tolower(metric)
     }
     for (simul_id in 3) {
       performances <- readRDS(paste0("Results/Stability_selection/2-simulations/3-regression_model/Simulations_", simul_study_id, "/Performances_", simul_id, "_merged_PFER_thr_", PFER_thr, ".rds"))
@@ -42,7 +43,7 @@ dimensionality <- c("Low", "Intermediate", "High")
       boxplot(
         at = xseq, mylist, col = mycolours, boxcol = "white", whiskcol = mycolours, staplecol = mycolours,
         whisklty = 1, range = 0, las = 2, main = "", cex.main = 1.5,
-        ylab = myylab, cex.lab = 1.5, xaxt = "n", ylim = c(0, 1), xlim=c(1, max(xseq))
+        ylab = myylab, cex.lab = 1.5, xaxt = "n", ylim = c(0, 1), xlim = c(1, max(xseq))
       )
       # mtext(text = LETTERS[which(tolower(metric_list)==tolower(metric))+1], side = 2, at = 1.1, line = 3, cex = 2, las = 1)
       abline(h = axTicks(2), lty = 3, col = "grey")
@@ -82,4 +83,5 @@ dimensionality <- c("Low", "Intermediate", "High")
       abline(v = c(4, 12, 20), lty = 3, col = "black")
     }
   }
-  dev.off() }
+  dev.off()
+}

@@ -10,11 +10,11 @@ source("Scripts/additional_functions_specific_to_comparisons_stability.R")
 # Simulation parameters
 simul_study_id <- 1
 # topology <- "random"
-topology="scale-free"
+topology <- "scale-free"
 PFER_thr_list <- 20
 
 # if (topology=="random"){
-folderpath="Results/Stability_selection/2-simulations/1-graphical_model"
+folderpath <- "Results/Stability_selection/2-simulations/1-graphical_model"
 # } else {
 #   folderpath="Results/1-graphical_model"
 # }

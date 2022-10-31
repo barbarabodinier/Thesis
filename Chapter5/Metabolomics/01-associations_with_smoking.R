@@ -37,13 +37,13 @@ print(nrow(metab))
 print(all(rownames(metab) == rownames(covars)))
 
 # Standardising continuous covariates
-if (smoking_metric!="ever_smoker"){
+if (smoking_metric != "ever_smoker") {
   covars[, smoking_metric] <- scale(covars[, smoking_metric])
 }
 covars$bmi <- scale(covars$bmi)
 covars$age.sample <- scale(covars$age.sample)
 metab <- scale(metab)
-covars$ever_smoker=ifelse(as.character(covars$smoking_status)=="Current", yes=1, no=0)
+covars$ever_smoker <- ifelse(as.character(covars$smoking_status) == "Current", yes = 1, no = 0)
 
 # Associations with smoking (univariate)
 out <- RunLinear(
@@ -58,11 +58,11 @@ out <- RunLinear(
 if (all_features) {
   saveRDS(out$summary, paste0("Results/Metabolomics/Univariate_", smoking_metric, "_all_features.rds"))
   write.xlsx(out$formatted, paste0("Tables/Metabolomics/Univariate_", smoking_metric, "_all_features.xlsx"),
-             rowNames = TRUE, overwrite = TRUE
+    rowNames = TRUE, overwrite = TRUE
   )
 } else {
   saveRDS(out$summary, paste0("Results/Metabolomics/Univariate_", smoking_metric, ".rds"))
   write.xlsx(out$formatted, paste0("Tables/Metabolomics/Univariate_", smoking_metric, ".xlsx"),
-             rowNames = TRUE, overwrite = TRUE
+    rowNames = TRUE, overwrite = TRUE
   )
 }

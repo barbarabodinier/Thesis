@@ -42,43 +42,43 @@ V(g_path)$name <- rownames(path_coef) <- colnames(path_coef) <- rownames(sigma) 
 
 # Saving figure
 pdf("Working_figures/Path_coefficients_and_correlations.pdf",
-    width = 18, height = 11
+  width = 18, height = 11
 )
 par(mfrow = c(2, 3), mar = c(5, 5, 5, 9))
 Heatmap(path_coef,
-        col = c("navy", "white", "red"),
-        legend_range = c(-1, 1),
-        text = TRUE,
-        format = "f", digits = 2, zero.print = "0.00",
-        cex = 1.5, cex.axis = 2,
-        legend = FALSE
+  col = c("navy", "white", "red"),
+  legend_range = c(-1, 1),
+  text = TRUE,
+  format = "f", digits = 2, zero.print = "0.00",
+  cex = 1.5, cex.axis = 2,
+  legend = FALSE
 )
 Heatmap(sigma,
-        col = c("navy", "white", "red"),
-        legend_range = c(-1, 1),
-        text = TRUE,
-        format = "f", digits = 2, zero.print = "0.00",
-        cex = 1.5, cex.axis = 2,
-        legend = FALSE
+  col = c("navy", "white", "red"),
+  legend_range = c(-1, 1),
+  text = TRUE,
+  format = "f", digits = 2, zero.print = "0.00",
+  cex = 1.5, cex.axis = 2,
+  legend = FALSE
 )
 Heatmap(phi,
-        col = c("navy", "white", "red"),
-        legend_range = c(-1, 1),
-        text = TRUE,
-        format = "f", digits = 2, zero.print = "0.00",
-        cex = 1.5, cex.axis = 2, cex.legend = 2
+  col = c("navy", "white", "red"),
+  legend_range = c(-1, 1),
+  text = TRUE,
+  format = "f", digits = 2, zero.print = "0.00",
+  cex = 1.5, cex.axis = 2, cex.legend = 2
 )
 adjacency_sigma <- ifelse(zapsmall(sigma) != 0, yes = 1, no = 0)
 diag(adjacency_sigma) <- 0
 g_sigma <- Graph(adjacency_sigma,
-                 satellites = TRUE,
-                 node_colour = "dodgerblue", edge_colour = "black"
+  satellites = TRUE,
+  node_colour = "dodgerblue", edge_colour = "black"
 )
 adjacency_phi <- ifelse(zapsmall(phi, digits = 5) != 0, yes = 1, no = 0)
 diag(adjacency_phi) <- 0
 g_phi <- Graph(adjacency_phi,
-               satellites = TRUE,
-               node_colour = "dodgerblue", edge_colour = "black"
+  satellites = TRUE,
+  node_colour = "dodgerblue", edge_colour = "black"
 )
 V(g_path)$size <- V(g_sigma)$size <- V(g_phi)$size <- 30
 V(g_path)$label.cex <- V(g_sigma)$label.cex <- V(g_phi)$label.cex <- 2
@@ -100,39 +100,41 @@ plot(g_sigma, layout = mylayout)
 plot(g_phi, layout = mylayout)
 dev.off()
 
-plotname="Working_figures/Equivalence_class.pdf"
+plotname <- "Working_figures/Equivalence_class.pdf"
 pdf(plotname, width = 18, height = 11)
 par(mfrow = c(2, 3), mar = c(5, 5, 5, 9))
-for (k in 1:3){
+for (k in 1:3) {
   print(k)
   # Preparing the directed adjacency matrix
   theta <- matrix(0, nrow = sum(pk), ncol = sum(pk))
-  if (k==2){
+  if (k == 2) {
     theta[1, 4] <- 1
-  } 
-  if (k%in%c(1,3)){
+  }
+  if (k %in% c(1, 3)) {
     theta[4, 1] <- 1
   }
   theta[2, 6] <- 1
   theta[3, 6] <- 1
   theta[4, 6] <- 1
-  if (k %in% c(1,2)){
+  if (k %in% c(1, 2)) {
     theta[2, 5] <- 1
   } else {
     theta[5, 2] <- 1
   }
-  
+
   # Data simulation
   set.seed(1)
   simul <- SimulateSCM(pk = pk, theta = theta, output_matrices = TRUE)
-  
+
   # Extracting the DAG
-  mygraph <- Graph(adjacency=simul$theta, 
-                   mode="directed", 
-                   node_label = paste0("X", 1:sum(pk)),
-                   node_colour = "dodgerblue",
-                   edge_colour = "black",
-                   satellites = TRUE)
+  mygraph <- Graph(
+    adjacency = simul$theta,
+    mode = "directed",
+    node_label = paste0("X", 1:sum(pk)),
+    node_colour = "dodgerblue",
+    edge_colour = "black",
+    satellites = TRUE
+  )
   mylayout <- layout_with_sugiyama(mygraph, layers = rep.int(1:length(pk), times = pk), weights = NA)
   mylayout$layout[1, 1] <- 0
   mylayout$layout[2, 1] <- 3
@@ -142,22 +144,22 @@ for (k in 1:3){
   g_path <- mygraph
   V(g_path)$size <- V(g_sigma)$size <- V(g_phi)$size <- 30
   V(g_path)$label.cex <- V(g_sigma)$label.cex <- V(g_phi)$label.cex <- 2
-  E(g_path)$arrow.size=1
-  E(g_path)$width=2
-  
-  if (k==1){
-    E(g_path)$color[4]="red"
+  E(g_path)$arrow.size <- 1
+  E(g_path)$width <- 2
+
+  if (k == 1) {
+    E(g_path)$color[4] <- "red"
   }
-  if (k==2){
-    E(g_path)$color[2]="red"
+  if (k == 2) {
+    E(g_path)$color[2] <- "red"
   }
-  if (k==3){
-    E(g_path)$color[3]="red"
-    E(g_path)$color[5]="red"
+  if (k == 3) {
+    E(g_path)$color[3] <- "red"
+    E(g_path)$color[5] <- "red"
   }
-  
-  plot(g_path, layout=mylayout)
-  
+
+  plot(g_path, layout = mylayout)
+
   # adjacency_phi <- ifelse(zapsmall(phi, digits = 5) != 0, yes = 1, no = 0)
   # diag(adjacency_phi) <- 0
   # g_phi <- Graph(adjacency_phi,
@@ -167,10 +169,10 @@ for (k in 1:3){
   # plot(g_phi, layout=mylayout)
 }
 dev.off()
-system(paste("pdfcrop --margin 10",plotname,plotname))
+system(paste("pdfcrop --margin 10", plotname, plotname))
 
 
-plotname="Working_figures/Refined_dag.pdf"
+plotname <- "Working_figures/Refined_dag.pdf"
 pdf(plotname, width = 18, height = 11)
 par(mfrow = c(2, 3), mar = c(5, 5, 5, 9))
 # Preparing the directed adjacency matrix
@@ -184,18 +186,20 @@ set.seed(1)
 simul <- SimulateSCM(pk = pk, theta = theta, output_matrices = TRUE)
 
 # Extracting the DAG
-mygraph <- Graph(adjacency=simul$theta, 
-                 mode="directed", 
-                 node_label = paste0("X", 1:sum(pk)),
-                 node_colour = "dodgerblue",
-                 edge_colour = "black",
-                 satellites = TRUE)
+mygraph <- Graph(
+  adjacency = simul$theta,
+  mode = "directed",
+  node_label = paste0("X", 1:sum(pk)),
+  node_colour = "dodgerblue",
+  edge_colour = "black",
+  satellites = TRUE
+)
 g_path <- mygraph
 V(g_path)$size <- V(g_sigma)$size <- V(g_phi)$size <- 30
 V(g_path)$label.cex <- V(g_sigma)$label.cex <- V(g_phi)$label.cex <- 2
-E(g_path)$arrow.size=1
-E(g_path)$width=2
+E(g_path)$arrow.size <- 1
+E(g_path)$width <- 2
 
-plot(g_path, layout=mylayout)
+plot(g_path, layout = mylayout)
 dev.off()
-system(paste("pdfcrop --margin 10",plotname,plotname))
+system(paste("pdfcrop --margin 10", plotname, plotname))

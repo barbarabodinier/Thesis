@@ -9,13 +9,13 @@ library(colorspace)
 for (simul_study_id in 1:3) {
   print(paste0("Simulation study ", simul_study_id))
   params_list <- read.table(paste0("Simulation_parameters/Simulation_parameters_list_", simul_study_id, ".txt"),
-                            sep = "\t", header = TRUE, stringsAsFactors = FALSE
+    sep = "\t", header = TRUE, stringsAsFactors = FALSE
   )
-  
+
   # Heatmap of pairwise Euclidian distances
   {
     pdf(paste0("Working_figures/Heatmaps_examples_simul_study_", simul_study_id, ".pdf"),
-        width = 14, height = 4
+      width = 14, height = 4
     )
     par(mfrow = c(1, nrow(params_list)), mar = c(5, 5, 2, 6))
     for (params_id in 1:nrow(params_list)) {
@@ -28,7 +28,7 @@ for (simul_study_id in 1:3) {
       nu_xc <- params_list[params_id, "nu_xc"]
       v_min <- params_list[params_id, "v_min"]
       v_max <- params_list[params_id, "v_max"]
-      
+
       # Data simulation
       set.seed(1)
       if (equal_size) {
@@ -51,7 +51,7 @@ for (simul_study_id in 1:3) {
         output_matrices = TRUE
       )
       simul$data <- scale(simul$data)
-      
+
       # Heatmap
       Heatmap(as.matrix(dist(simul$data)))
     }
@@ -61,19 +61,19 @@ for (simul_study_id in 1:3) {
 
 
 # Scenario 2
-simul_study_id=4
+simul_study_id <- 4
 print(paste0("Simulation study ", simul_study_id))
 params_list <- read.table(paste0("Simulation_parameters/Simulation_parameters_list_", simul_study_id, ".txt"),
-                          sep = "\t", header = TRUE, stringsAsFactors = FALSE
+  sep = "\t", header = TRUE, stringsAsFactors = FALSE
 )
 
 # Heatmap of pairwise Euclidian distances
 {
   pdf(paste0("Working_figures/Heatmaps_examples_simul_study_", simul_study_id, ".pdf"),
-      width = 14, height = 4
+    width = 14, height = 4
   )
   par(mfrow = c(1, 3), mar = c(5, 5, 2, 6))
-  params_id=1
+  params_id <- 1
   # Extracting simulation parameters
   nc <- params_list[params_id, "nc"]
   equal_size <- params_list[params_id, "equal_size"]
@@ -83,7 +83,7 @@ params_list <- read.table(paste0("Simulation_parameters/Simulation_parameters_li
   nu_xc <- params_list[params_id, "nu_xc"]
   v_min <- params_list[params_id, "v_min"]
   v_max <- params_list[params_id, "v_max"]
-  
+
   # Data simulation
   set.seed(1)
   if (equal_size) {
@@ -108,12 +108,11 @@ params_list <- read.table(paste0("Simulation_parameters/Simulation_parameters_li
     output_matrices = TRUE
   )
   simul$data <- scale(simul$data)
-  
+
   # Heatmap (all attributes)
   Heatmap(as.matrix(dist(simul$data)))
-  
+
   # Heatmap (contributing attributes)
-  Heatmap(as.matrix(dist(simul$data[,which(theta_xc==1)])))
+  Heatmap(as.matrix(dist(simul$data[, which(theta_xc == 1)])))
   dev.off()
 }
-

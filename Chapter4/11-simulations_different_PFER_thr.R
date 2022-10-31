@@ -24,7 +24,7 @@ dimensionality <- c("Low", "Intermediate", "High")
 for (PFER_thr in PFER_thr_list) {
   for (metric in c("F1_score", "precision", "recall")) {
     pdf(paste0("Working_figures/Boxplot_", metric, "_stability_selection_", simul_study_id, "_", topology, "_PFER_thr_", PFER_thr, ".pdf"),
-        width = 12, height = 4.5
+      width = 12, height = 4.5
     )
     par(mar = c(7, 5, 3, 1), mfrow = c(1, 3))
     for (simul_id in 1:3) {
@@ -44,14 +44,14 @@ for (PFER_thr in PFER_thr_list) {
         at = xseq, mylist, col = mycolours,
         boxcol = "white", whiskcol = mycolours, staplecol = mycolours, medcol = darken(mycolours, amount = 0.5),
         whisklty = 1, range = 0, las = 2, main = dimensionality[simul_id], cex.main = 2,
-        ylab = myylab, cex.lab = 1.5, xaxt = "n", ylim = c(0, 1), boxwex=0.7
+        ylab = myylab, cex.lab = 1.5, xaxt = "n", ylim = c(0, 1), boxwex = 0.7
       )
       abline(h = axTicks(2), lty = 3, col = "grey")
       boxplot(
         at = xseq, mylist, col = mycolours,
         boxcol = "white", whiskcol = mycolours, staplecol = mycolours, medcol = darken(mycolours, amount = 0.5),
         whisklty = 1, range = 0, las = 2, add = TRUE,
-        ylab = myylab, cex.lab = 1.5, xaxt = "n", boxwex=0.7
+        ylab = myylab, cex.lab = 1.5, xaxt = "n", boxwex = 0.7
       )
       abline(h = median19, col = "darkred", lty = 2)
       abline(h = median20, col = "firebrick", lty = 2)

@@ -26,16 +26,15 @@ segments(x0 = x[2, 1], y0 = x[1, 2], x1 = x[2, 1], y1 = x[2, 2], col = "blue", l
 points(x[, 1], x[, 2], pch = 3, cex = 2, lwd = 3)
 text(mean(x[, 1]), x[1, 2], pos = 1, labels = "a", col = "blue", cex = 1.5)
 text(x[2, 1], mean(x[, 2]), pos = 4, labels = "b", col = "blue", cex = 1.5)
-text(mean(x[, 1]), mean(x[, 2]), labels = expression(d[12]^E*"=" * sqrt(a^2 + b^2)), col = "red", cex = 1.5, pos = 2)
+text(mean(x[, 1]), mean(x[, 2]), labels = expression(d[12]^E * "=" * sqrt(a^2 + b^2)), col = "red", cex = 1.5, pos = 2)
 dev.off()
 
 
 dist(t(scale(t(x))))
-1-cor(t(x))[1,2]
+1 - cor(t(x))[1, 2]
 
-simul=SimulateGraphical()
-x=simul$data
+simul <- SimulateGraphical()
+x <- simul$data
 
-cor(t(x))[1,2]
-1-(as.matrix(dist(t(scale(t(x)))))[1,2])^2/(2*(ncol(x)-1))
-
+cor(t(x))[1, 2]
+1 - (as.matrix(dist(t(scale(t(x)))))[1, 2])^2 / (2 * (ncol(x) - 1))
