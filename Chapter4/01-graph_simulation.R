@@ -1,10 +1,8 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(sharp)
 library(igraph)
-devtools::load_all("/Users/barbara/Dropbox/R_packages/Simulations/fake")
 
 pdf("Working_figures/Random_graphs.pdf",
   width = 18, height = 6

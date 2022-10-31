@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter5/")
 
 # Loading the data
 proteins <- readRDS("Data/Original/Proteins_selected_denoised_re.rds")

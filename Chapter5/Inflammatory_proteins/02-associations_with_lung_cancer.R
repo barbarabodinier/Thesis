@@ -1,9 +1,9 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter5/")
 
 library(openxlsx)
 library(glmnet)
 library(sharp)
+
 source("~/Dropbox/PhD/Thesis/Version2/chapter5/Scripts/functions.R")
 
 # Loading the data

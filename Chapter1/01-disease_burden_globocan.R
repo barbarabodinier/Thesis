@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter1/")
 
 library(data.table)
 library(rworldmap)

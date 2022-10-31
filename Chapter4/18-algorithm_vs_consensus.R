@@ -1,9 +1,7 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(sharp)
-devtools::load_all("/Users/barbara/Dropbox/R_packages/Stability/sharp")
 
 # Extracting simulation results with true number of selected variables
 simul_study_id <- 1

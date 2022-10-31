@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(sharp)
@@ -11,16 +10,6 @@ n_simul <- 1
 for (simul_study_id in "4") {
   print(paste0("Simulation study ", simul_study_id))
 
-  # Template design
-  mycolours <- lighten(c(
-    rep("navy", 10), "darkred",
-    rep("maroon4", 10), "darkred"
-  ),
-  amount = 0.3
-  )
-  dimensionality <- c("", "", "")
-
-  # Saving figure
   # Template design
   mycolours <- lighten(c(
     "tan",

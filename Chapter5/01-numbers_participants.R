@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter5/")
 
 # DNA methylation
 covars <- readRDS("Data/Original/Covariates_no_rep.rds")
@@ -25,7 +24,6 @@ table(is.na(covars$packyears) | is.na(covars$bmi), covars$cohort)
 rownames(covars_cpg) <- covars_cpg$labnr
 covars_cpg <- covars_cpg[which(rownames(covars_cpg) %in% rownames(covars)), ]
 
-
 # Proteins
 proteins <- readRDS("Data/Original/Proteins_selected_denoised_re.rds")
 covars <- readRDS("Data/Original/Covariates_no_rep.rds")
@@ -33,14 +31,12 @@ covars <- readRDS("Data/Original/Covariates_no_rep.rds")
 covars <- covars[rownames(proteins), ]
 table(is.na(covars$packyears) | is.na(covars$bmi), covars$cohort, covars$case)
 
-
 # Metabolomics
 metab <- readRDS("Data/Original/Metabolites_negative_imputed.rds")
 covars <- readRDS("Data/Original/Covariates_no_rep.rds")
 
 covars <- covars[rownames(metab), ]
 table(is.na(covars$packyears) | is.na(covars$bmi), covars$cohort, covars$case)
-
 
 # OMICs integration
 covars <- readRDS("Data/Original/Covariates_no_rep.rds")

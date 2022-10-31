@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(sharp)
@@ -76,8 +75,6 @@ for (simul_study_id in c("1")) {
       whisklty = 1, range = 0, las = 1, main = dimensionality[simul_id], cex.main = 1.5,
       ylab = myylab, cex.lab = 2, xaxt = "n", ylim = ylim, boxwex = 0.35
     )
-    # mtext(text = LETTERS[simul_id], side = 2, at = 1.1, line = 3, cex = 2, las = 1)
-    # title(simul_id)
     abline(h = axTicks(2), lty = 3, col = "grey")
     zseq <- c(0.5, 3.5, 9.5)
     abline(v = zseq, lty = 2, col = "black")
@@ -89,9 +86,6 @@ for (simul_study_id in c("1")) {
     for (id in c(1, 4, 9)) {
       abline(h = eval(parse(text = paste0("median", id))), col = darken(mycolours[id], amount = 0.4), lty = 2)
     }
-    # abline(h = median6, col = darken(mycolours[6], amount=0.4), lty = 2)
-    # abline(h = median5, col = darken(mycolours[5], amount=0.4), lty = 2)
-    # abline(h = median4, col = darken(mycolours[4], amount=0.4), lty = 2)
     axis(side = 1, at = xseq, labels = full_names[rownames(performances)], las = 2)
     axis(side = 3, at = zseq, labels = NA)
     axis(side = 3, at = apply(rbind(zseq[-1], zseq[-length(zseq)]), 2, mean), labels = algo_names, tick = FALSE, cex.axis = 1.5)

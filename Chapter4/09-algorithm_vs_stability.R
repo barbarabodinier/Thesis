@@ -1,12 +1,10 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(sharp)
 library(igraph)
 
 source("Scripts/additional_functions_specific_to_comparisons_stability.R")
-
 
 # Simulation parameters
 n <- 200

@@ -1,11 +1,9 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter5/")
 
 # DNA methylation
 covars <- readRDS("Data/Original/Covariates_no_rep.rds")
 covars_cpg <- readRDS("Data/Original/covariates_cpg.rds")
 table(rownames(covars_cpg) == covars_cpg$ID)
-# cpg=readRDS("Data/Original/imputed_denoised_450K.rds")
 
 # Excluding participants with missing packyears or BMI
 covars <- covars[which((!is.na(covars$packyears)) & (!is.na(covars$bmi))), ]

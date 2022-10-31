@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Latest/chapter4/")
 
 library(fake)
 library(sharp)

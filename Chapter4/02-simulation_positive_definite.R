@@ -1,14 +1,10 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(corpcor)
 library(colorspace)
 
-# theta1 <- SimulateAdjacency(pk = 100, nu_within = 0.05)
-# theta2 <- SimulateAdjacency(pk = 100, topology = "scale-free")
-# theta3 <- SimulateAdjacency(pk = c(70, 20, 10), nu_within = 0.5, nu_between = 0)
-
+# Simulations
 set.seed(1)
 theta2 <- SimulateAdjacency(pk = 30, nu_within = 0.5)
 theta3 <- SimulateAdjacency(pk = 30, topology = "scale-free")
@@ -31,8 +27,6 @@ for (k in 1:4) {
     mat = cor2pcor(cov2cor(solve(omega_e$omega))),
     col = c("navy", "white", "darkred"),
     legend_range = c(-1, 1),
-    # col = c("white", darken("darkred", amount = 0.2)),
-    # legend_range = c(0, 1),
     legend = FALSE
   )
   omega_d <- SimulatePrecision(
@@ -43,8 +37,6 @@ for (k in 1:4) {
     mat = cor2pcor(cov2cor(solve(omega_d$omega))),
     col = c("navy", "white", "darkred"),
     legend_range = c(-1, 1),
-    # col = c("white", darken("darkred", amount=0.2)),
-    # legend_range = c(0, 1),
     legend = ifelse(k == 1, yes = TRUE, no = FALSE)
   )
 }

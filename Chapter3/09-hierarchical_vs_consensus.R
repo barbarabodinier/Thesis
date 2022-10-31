@@ -1,34 +1,10 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter3/")
 
 library(sharp)
 library(igraph)
 library(randomcoloR)
 library(colorspace)
 library(aricode)
-
-# Exporting all functions from sharp (including internal ones)
-r <- unclass(lsf.str(envir = asNamespace("sharp"), all = T))
-for (name in r) eval(parse(text = paste0(name, "<-sharp:::", name)))
-
-# Exporting all functions from fake (including internal ones)
-r <- unclass(lsf.str(envir = asNamespace("fake"), all = T))
-for (name in r) eval(parse(text = paste0(name, "<-fake:::", name)))
-
-# Loading all additional functions
-myfunctions <- list.files("Scripts/Functions/")
-myfunctions <- myfunctions[myfunctions != "Former"]
-for (k in 1:length(myfunctions)) {
-  source(paste0("Scripts/Functions/", myfunctions[k]))
-}
-
-# # Simulation with perfect consensus clustering
-# set.seed(0)
-# n=c(20,50,30)
-# simul=SimulateClustering(n=n,
-#                          pk=20,
-#                          nu_xc=1,
-#                          ev_xc=0.4)
 
 # Simulation of data with clusters
 set.seed(0)

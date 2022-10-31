@@ -1,8 +1,8 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter5/")
 
 library(openxlsx)
-source("~/Dropbox/PhD/Thesis/Version2/chapter5/Scripts/functions.R")
+
+source("Scripts/functions.R")
 
 # Loading the data
 cpg <- readRDS("Data/Original/imputed_denoised_450K.rds")
@@ -14,12 +14,6 @@ cpg <- cpg[ids, ]
 covars <- covars[ids, ]
 print(nrow(cpg))
 print(all(rownames(cpg) == rownames(covars)))
-
-# # Keeping only Women
-# covars <- covars[which(as.character(covars$gender) == "Female"), ]
-# cpg <- cpg[rownames(covars), ]
-# print(nrow(cpg))
-# print(all(rownames(cpg) == rownames(covars)))
 
 # Standardising continuous covariates
 covars$packyears <- scale(covars$packyears)

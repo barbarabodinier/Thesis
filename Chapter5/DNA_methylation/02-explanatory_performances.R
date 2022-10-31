@@ -1,9 +1,9 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter5/")
 
 library(glmnet)
 library(sharp)
-source("~/Dropbox/PhD/Thesis/Version2/chapter5/Scripts/functions.R")
+
+source("Scripts/functions.R")
 
 # Loading the data
 cpg <- readRDS("Data/Original/imputed_denoised_450K.rds")
@@ -55,9 +55,3 @@ IncrementalPlot(expl,
 
 # Saving the results
 saveRDS(expl, "Results/DNA_methylation/Incremental_performances_lung_cancer_all.rds")
-
-# stable_cpgs=names(SelectedVariables(stab))[which(SelectedVariables(stab)==1)]
-# stab_dp=readRDS("/Users/barbara/Dropbox/DNA_methylation_lung_cancer/Results/stability_80_m2_0.rds")
-# class(stab_dp)=class(stab)
-# stable_cpgs_dp=names(SelectedVariables(stab_dp))[which(SelectedVariables(stab_dp)==1)]
-# intersect(stable_cpgs, stable_cpgs_dp)

@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(sharp)
@@ -12,12 +11,7 @@ simul_study_id <- 1
 # topology <- "random"
 topology <- "scale-free"
 PFER_thr_list <- 20
-
-# if (topology=="random"){
 folderpath <- "Results/Stability_selection/2-simulations/1-graphical_model"
-# } else {
-#   folderpath="Results/1-graphical_model"
-# }
 
 # Template design
 pi_list <- seq(0.6, 0.9, by = 0.05)

@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter2/")
 
 pdf("Working_figures/Normal_distribution.pdf")
 xseq <- seq(-5, 5, length.out = 1e5)

@@ -1,23 +1,9 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter3/")
 
 library(sharp)
 library(sparcl)
 library(rCOSA)
 library(colorspace)
-
-# Exporting all functions from sharp (including internal ones)
-r <- unclass(lsf.str(envir = asNamespace("sharp"), all = T))
-for (name in r) eval(parse(text = paste0(name, "<-sharp:::", name)))
-r <- unclass(lsf.str(envir = asNamespace("fake"), all = T))
-for (name in r) eval(parse(text = paste0(name, "<-fake:::", name)))
-
-# Loading all additional functions
-myfunctions <- list.files("Scripts/Functions/")
-myfunctions <- myfunctions[myfunctions != "Former"]
-for (k in 1:length(myfunctions)) {
-  source(paste0("Scripts/Functions/", myfunctions[k]))
-}
 
 pdf(paste0("Working_figures/Distance_with_noise_attributes.pdf"),
   width = 7, height = 10

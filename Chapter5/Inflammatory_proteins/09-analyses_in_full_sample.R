@@ -1,8 +1,8 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter5/")
 
 library(openxlsx)
 library(sharp)
+
 source("~/Dropbox/PhD/Thesis/Version2/chapter5/Scripts/functions.R")
 
 # Loading the data
@@ -21,10 +21,6 @@ covars$packyears <- scale(covars$packyears)
 covars$bmi <- scale(covars$bmi)
 covars$age.sample <- scale(covars$age.sample)
 covars$sex <- ifelse(as.character(covars$gender) == "Male", yes = 1, no = 0)
-
-# # Keeping only adenocarcinoma
-# covars=covars[which(ifelse(is.na(covars$subtype), yes = "Control", no = covars$subtype)%in%c("Control", "Adenocarcinoma")),]
-# proteins=proteins[rownames(covars),]
 
 # Checking balanced subsampling by subtype
 strata <- ifelse(is.na(covars$subtype), yes = "Control", no = covars$subtype)

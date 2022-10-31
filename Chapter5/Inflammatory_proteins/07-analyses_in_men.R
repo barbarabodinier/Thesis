@@ -1,8 +1,8 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter5/")
 
 library(openxlsx)
 library(sharp)
+
 source("~/Dropbox/PhD/Thesis/Version2/chapter5/Scripts/functions.R")
 
 # Loading the data
@@ -21,10 +21,6 @@ covars <- covars[which(as.character(covars$gender) == "Male"), ]
 proteins <- proteins[rownames(covars), ]
 print(nrow(proteins))
 print(all(rownames(proteins) == rownames(covars)))
-
-# # Keeping only adenocarcinoma
-# covars=covars[which(ifelse(is.na(covars$subtype), yes = "Control", no = covars$subtype)%in%c("Control", "Adenocarcinoma")),]
-# proteins=proteins[rownames(covars),]
 
 # Standardising continuous covariates
 covars$packyears <- scale(covars$packyears)

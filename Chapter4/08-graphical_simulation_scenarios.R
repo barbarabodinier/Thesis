@@ -1,10 +1,7 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(igraph)
-
-### Simulations
 
 # Simulation parameters
 n <- 200

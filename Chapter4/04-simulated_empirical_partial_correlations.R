@@ -1,9 +1,9 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter4/")
 
 library(fake)
 library(corpcor)
 
+# Data simulation
 set.seed(1)
 simul1 <- SimulateGraphical(n = 100, pk = 20, nu_within = 0.1, output_matrices = TRUE)
 set.seed(1)

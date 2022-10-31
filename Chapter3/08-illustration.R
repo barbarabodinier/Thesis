@@ -1,5 +1,4 @@
 rm(list = ls())
-setwd("~/Dropbox/PhD/Thesis/Version2/chapter3/")
 
 library(sharp)
 library(igraph)
@@ -7,30 +6,7 @@ library(randomcoloR)
 library(colorspace)
 library(aricode)
 
-# Exporting all functions from sharp (including internal ones)
-r <- unclass(lsf.str(envir = asNamespace("sharp"), all = T))
-for (name in r) eval(parse(text = paste0(name, "<-sharp:::", name)))
-
-# Exporting all functions from sharp (including internal ones)
-r <- unclass(lsf.str(envir = asNamespace("fake"), all = T))
-for (name in r) eval(parse(text = paste0(name, "<-fake:::", name)))
-
-# Loading all additional functions
-myfunctions <- list.files("Scripts/Functions/")
-myfunctions <- myfunctions[myfunctions != "Former"]
-for (k in 1:length(myfunctions)) {
-  source(paste0("Scripts/Functions/", myfunctions[k]))
-}
-
 # Simulation of data with clusters
-# set.seed(1)
-# n <- c(20, 50, 30)
-# simul <- SimulateClustering(
-#   n = n,
-#   pk = 5,
-#   nu_xc = 1,
-#   ev_xc = 0.5
-# )
 set.seed(0)
 n <- c(20, 50, 30)
 simul <- SimulateClustering(
