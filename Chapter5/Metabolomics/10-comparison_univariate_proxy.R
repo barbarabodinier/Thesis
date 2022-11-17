@@ -10,11 +10,11 @@ summary_method <- "centroid"
 var_of_interest <- "packyears"
 
 # Loading the results
-annot <- readRDS("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Data/Annotation_representative_features.rds")
-stab <- readRDS("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Results/2-clustering/consensus_clustering_very_fine_both.rds")
+annot <- readRDS("Data/Annotation_representative_features.rds")
+stab <- readRDS("Results/2-clustering/consensus_clustering_very_fine_both.rds")
 results_summarised <- readRDS(paste0("Results/Metabolomics/Univariate_", var_of_interest, ".rds"))
 results_all <- readRDS(paste0("Results/Metabolomics/Univariate_", var_of_interest, "_all_features.rds"))
-description <- read.xlsx(paste0("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Tables/2-clustering/Description_summary_", summary_method, ".xlsx"))
+description <- read.xlsx(paste0("Tables/2-clustering/Description_summary_", summary_method, ".xlsx"))
 rownames(description) <- description[, 1]
 
 # Extracting the cluster membership

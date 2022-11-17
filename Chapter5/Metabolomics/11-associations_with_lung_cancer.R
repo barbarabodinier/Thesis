@@ -3,13 +3,13 @@ rm(list = ls())
 library(glmnet)
 library(sharp)
 
-source("~/Dropbox/PhD/Thesis/Version2/chapter5/Scripts/functions.R")
+source("../functions.R")
 
 # Parameters
 summary_method <- "centroid"
 
 # Loading the data
-metab <- readRDS(paste0("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Data/Metabolites_imputed_summarised_", summary_method, ".rds"))
+metab <- readRDS(paste0("Data/Metabolites_imputed_summarised_", summary_method, ".rds"))
 covars <- readRDS("Data/Original/Covariates_no_rep.rds")
 
 # Excluding participants with missing characteristics

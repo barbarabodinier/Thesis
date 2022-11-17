@@ -2,7 +2,7 @@ rm(list = ls())
 
 library(openxlsx)
 
-source("~/Dropbox/PhD/Thesis/Version2/chapter5/Scripts/functions.R")
+source("../functions.R")
 
 # Parameters
 all_features <- FALSE
@@ -12,14 +12,14 @@ smoking_metric <- "ever_smoker"
 # Loading the data
 if (all_features) {
   covars <- readRDS("Data/Original/Covariates_no_rep.rds")
-  metab_neg <- readRDS("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Data/Metabolites_negative_imputed.rds")
-  metab_pos <- readRDS("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Data/Metabolites_positive_imputed.rds")
+  metab_neg <- readRDS("Data/Metabolites_negative_imputed.rds")
+  metab_pos <- readRDS("Data/Metabolites_positive_imputed.rds")
   covars <- covars[rownames(metab_neg), ]
   print(all(rownames(metab_neg) == rownames(metab_pos)))
   print(all(rownames(covars) == rownames(metab_pos)))
   metab <- cbind(metab_pos, metab_neg)
 } else {
-  metab <- readRDS(paste0("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Data/Metabolites_imputed_summarised_", summary_method, ".rds"))
+  metab <- readRDS(paste0("Data/Metabolites_imputed_summarised_", summary_method, ".rds"))
   covars <- readRDS("Data/Original/Covariates_no_rep.rds")
 }
 

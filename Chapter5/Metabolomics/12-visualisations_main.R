@@ -13,8 +13,8 @@ for (subtype in c("lung_cancer")) {
   print(subtype)
 
   # Loading the results
-  annot <- readRDS("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Data/Annotation_representative_features.rds")
-  stab_clustering <- readRDS("/Users/barbara/Dropbox/Metabolomics_lung_cancer/Results/2-clustering/consensus_clustering_very_fine_both.rds")
+  annot <- readRDS("Data/Annotation_representative_features.rds")
+  stab_clustering <- readRDS("Results/2-clustering/consensus_clustering_very_fine_both.rds")
   results_packyears <- readRDS(paste0("Results/Metabolomics/Univariate_packyears.rds"))
   tmpstab <- readRDS(paste0("Results/Metabolomics/Multivariate_", subtype, ".rds"))
   tmpexpl <- readRDS(paste0("Results/Metabolomics/Incremental_performances_", subtype, ".rds"))
